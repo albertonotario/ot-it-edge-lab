@@ -141,3 +141,13 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Node-RED — estado de ejecucion (regenerado al arrancar)
+node-red/node_modules/
+node-red/.config.*
+node-red/.sessions.json
+node-red/.npm/
+node-red/lib/
+
+# Node-RED — credenciales cifradas
+node-red/flows_cred.json

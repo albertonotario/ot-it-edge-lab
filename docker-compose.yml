@@ -1,5 +1,5 @@
 services:
-  # --- Nivel 1-2 Purdue: PLC ---
+  # --- Nivel 1-2 Purdue: el "PLC" ---
   modbus-plc:
     image: oitc/modbus-server:latest
     container_name: modbus-plc
@@ -11,19 +11,20 @@ services:
       - ./modbus/server_config.json:/server_config.json:ro
     networks: [ot]
 
-  # --- Nivel 3 Purdue: Edge ---
+  # --- Nivel 3 Purdue: el Edge ---
   node-red:
     image: nodered/node-red:latest
     container_name: node-red
     restart: unless-stopped
+    user: "1000:1000"
     ports:
       - "1880:1880"
     volumes:
-      - node_red_data:/data
+      - ./node-red:/data
     networks: [ot]
     depends_on: [modbus-plc, mosquitto]
 
-  # --- Broker: frontera IT ---
+  # --- Broker: frontera hacia IT ---
   mosquitto:
     image: eclipse-mosquitto:2
     container_name: mosquitto
@@ -37,6 +38,3 @@ services:
 networks:
   ot:
     driver: bridge
-
-volumes:
-  node_red_data:
