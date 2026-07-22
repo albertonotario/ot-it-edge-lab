@@ -2,20 +2,29 @@
   "server": {
     "listenerAddress": "0.0.0.0",
     "listenerPort": 5020,
-    "logging": { "logLevel": "INFO" }
+    "tlsParams": {
+      "description": "path to certificate and private key to enable tls",
+      "privateKey": null,
+      "certificate": null
+    },
+    "logging": {
+      "format": "%(asctime)-15s %(threadName)-15s  %(levelname)-8s %(module)-15s:%(lineno)-8s %(message)s",
+      "logLevel": "INFO"
+    }
   },
   "registers": {
-    "zeroMode": true,
+    "description": "mapa de registros de la linea 1 (claves 1-based)",
+    "zeroMode": false,
     "initializeUndefinedRegisters": true,
     "discreteInput": {},
     "coils": {},
-    "inputRegister": {},
     "holdingRegister": {
-      "0": "0x02D5",
-      "1": "0x0098",
-      "2": "0x05AA",
-      "3": "0x0001",
-      "4": "0x3039"
-    }
+      "1": "0x02D5",
+      "2": "0x0098",
+      "3": "0x05AA",
+      "4": "0x0001",
+      "5": "0x3039"
+    },
+    "inputRegister": {}
   }
 }
