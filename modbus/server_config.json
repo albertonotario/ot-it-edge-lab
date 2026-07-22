@@ -1,0 +1,21 @@
+{
+  "server": {
+    "listenerAddress": "0.0.0.0",
+    "listenerPort": 5020,
+    "logging": { "logLevel": "INFO" }
+  },
+  "registers": {
+    "zeroMode": true,
+    "initializeUndefinedRegisters": true,
+    "discreteInput": {},
+    "coils": {},
+    "inputRegister": {},
+    "holdingRegister": {
+      "0": "0x02D5",
+      "1": "0x0098",
+      "2": "0x05AA",
+      "3": "0x0001",
+      "4": "0x3039"
+    }
+  }
+}
