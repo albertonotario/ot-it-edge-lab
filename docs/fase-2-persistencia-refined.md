@@ -177,7 +177,28 @@ el flujo de Node-RED o en una capa de procesamiento posterior.
 
 ---
 
-## 8. Siguiente
+## 8. Visualización: Grafana
 
-**Fase 3 — Visualización y seguridad:** Grafana leyendo de InfluxDB, TLS en el
-broker, autenticación de usuarios.
+Grafana se conecta a InfluxDB y pinta gráficas.
+
+**Dashboard de ejemplo:**
+
+```bash
+http://192.168.1.50:3000
+Usuario: admin
+Contraseña: admin123
+```
+
+Crea un panel con la query InfluxQL:
+
+```sql
+SELECT "temperatura_c", "presion_bar", "rpm" FROM "mqtt_consumer" WHERE time > now() - 6h
+```
+
+Tipo: Time series. Resultado: tres líneas mostrando la evolución de cada métrica en las últimas 6 horas.
+
+---
+
+## 9. Siguiente
+
+**Fase 3 — Seguridad:** Endurecimiento del broker (TLS, autenticación, ACLs por topic).
