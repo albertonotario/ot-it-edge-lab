@@ -35,6 +35,29 @@ services:
       - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
     networks: [ot]
 
+   # --- Recopilacion de datos con Telegraf e InfluxDB ---
+  influxdb:
+    image: influxdb:1.8-alpine
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    networks: [ot]
+
+  telegraf: 
+    image: telegraf:latest 
+    container_name: telegraf
+    restart: unless-stopped
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro 
+    networks: [ot]
+    depends_on: [influxdb,mosquitto]
+
 networks:
   ot:
     driver: bridge
+
+volumes:
+  influxdb_data:
